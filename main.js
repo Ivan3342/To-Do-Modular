@@ -10,6 +10,10 @@ const addTask = () => {
     const description = document.querySelector("#description");
     const newTask = new Task(id, title.value, due.value, description.value, false);
 
+    title.value = "";
+    due.value = null;
+    description.value = "";
+
     tasks.push(newTask);
     updateTasks();
 }
