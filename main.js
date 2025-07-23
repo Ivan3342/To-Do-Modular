@@ -50,7 +50,7 @@ const completeTask = (e) => {
     for (const task of tasks) {
         if(selectedTask.id == task.id){
             completedTasks.push(task);
-            tasks.splice(task)
+            tasks.splice(task, 1)
             selectedTask.remove();
             updateTasks();
             break;
@@ -60,6 +60,7 @@ const completeTask = (e) => {
 
 const updateTasks = () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
 }
 
 document.querySelector("#add").addEventListener("click", () => {
