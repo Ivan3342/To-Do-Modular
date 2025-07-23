@@ -26,11 +26,19 @@ const renderTasks = () => {
         title.innerHTML = task.title;
         const due = document.createElement("h3");
         due.innerHTML = `Due: ${task.due}`;
+        due.classList.add("hidden");
         const description = document.createElement("p");
         description.innerHTML = task.description;
+        description.classList.add("hidden");
 
         const detailsButton = document.createElement("button");
         detailsButton.innerHTML = "Details";
+
+        detailsButton.addEventListener("click", () => {
+            due.classList.toggle("hidden");
+            description.classList.toggle("hidden");
+        });
+
         const completeButton = document.createElement("button");
         completeButton.innerHTML = "Complete";
 
@@ -48,7 +56,8 @@ const renderTasks = () => {
 const completeTask = (e) => {
     const selectedTask = e.target.parentElement;
     for (const task of tasks) {
-        if(selectedTask.id == task.id){
+        if (selectedTask.id == task.id) {
+            task.completed = true;
             completedTasks.push(task);
             tasks.splice(task, 1)
             selectedTask.remove();
